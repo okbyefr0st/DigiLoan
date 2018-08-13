@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+public class GFG {
+
+	// Function to calculate EMI
+	static double emi_calculator(double p, double r, double t) {
+		double emi;
+
+		r = r / (12 * 100); // one month interest
+		t = t * 12; // one month period
+		emi = (p * r * (float) Math.pow(1 + r, t)) / (double) (Math.pow(1 + r, t) - 1);
+
+		return (emi);
+	}
+
+	// Driver Program
+	static public void main(String[] args) {
+
+		double principal, rate, time, emi;
+		Scanner t = new Scanner(System.in);
+
+		System.out.println("Enter Principal");
+		principal = t.nextFloat();
+		rate = 8;
+		System.out.println("Enter Tenure");
+		time = t.nextFloat();
+		emi = emi_calculator(principal, rate, time);
+
+		double yearEmi = emi * 12;
+		double totEmi = yearEmi * time;
+		double monInt = (emi) - ((principal / time / 12));
+		double yearInt = (totEmi) - principal;
+		double totInt = (yearEmi) - ((principal / time));
+
+		System.out.println("Monthly EMI is = " + Math.round(emi)); // Monthly EMI
+		System.out.println("Yearly EMI is= " + Math.round(yearEmi)); // Yearly EMI
+		System.out.println("Total Payment (Principal + Interest)= " + Math.round(totEmi)); // Total EMI
+		System.out.println("Monthly Intrest is = " + Math.round(monInt)); // Monthly Interest
+		System.out.println("Yearly Intrest is = " + Math.round(totInt)); // Yearly Interest
+		System.out.println("Total Interest Payable= " + Math.round(yearInt)); // Total Interest
+
+		double salary, capToPay;
+		int age;
+
+		System.out.println("Enter Salary");
+		salary = t.nextFloat();
+		capToPay = (((salary / 100) * 40)) * time;
+		System.out.println("Enter Age");
+		age = t.nextInt();
+
+		if (totEmi <= capToPay && age >= 21 && (age + time) <= 60) // {totEmi} <= {(((salary/100)*40)+yearInt)*time} &&
+																	// age 21 to 60
+			System.out.println("You are Eligible to Pay");
+		else
+			System.out.println("You are not Eligible to Pay");
+
+	}
+}
