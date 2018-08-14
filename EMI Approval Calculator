@@ -4,11 +4,13 @@ public class GFG {
 
 	// Function to calculate EMI
 	static double emi_calculator(double p, double r, double t) {
-		double emi;
+		double emi, interest;
+		interest = (p * r * t) / 100;
+		emi = (p + interest) / (t * 12); // Simple Intrest
 
-		r = r / (12 * 100); // one month interest
-		t = t * 12; // one month period
-		emi = (p * r * (float) Math.pow(1 + r, t)) / (double) (Math.pow(1 + r, t) - 1);
+		// r = r / (12 * 100); // one month interest
+		// t = t * 12; // one month period
+		// emi = (p * r * (float) Math.pow(1 + r, t))/(double)(Math.pow(1 + r, t)-1);//Compound Interest
 
 		return (emi);
 	}
@@ -29,15 +31,15 @@ public class GFG {
 		double yearEmi = emi * 12;
 		double totEmi = yearEmi * time;
 		double monInt = (emi) - ((principal / time / 12));
-		double yearInt = (totEmi) - principal;
-		double totInt = (yearEmi) - ((principal / time));
+		double yearInt = (yearEmi) - ((principal / time));
+		double totInt = (totEmi) - principal;
 
 		System.out.println("Monthly EMI is = " + Math.round(emi)); // Monthly EMI
 		System.out.println("Yearly EMI is= " + Math.round(yearEmi)); // Yearly EMI
 		System.out.println("Total Payment (Principal + Interest)= " + Math.round(totEmi)); // Total EMI
 		System.out.println("Monthly Intrest is = " + Math.round(monInt)); // Monthly Interest
-		System.out.println("Yearly Intrest is = " + Math.round(totInt)); // Yearly Interest
-		System.out.println("Total Interest Payable= " + Math.round(yearInt)); // Total Interest
+		System.out.println("Yearly Intrest is = " + Math.round(yearInt)); // Yearly Interest
+		System.out.println("Total Interest Payable= " + Math.round(totInt)); // Total Interest
 
 		double salary, capToPay, salPart;
 		int age;
