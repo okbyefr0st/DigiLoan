@@ -39,12 +39,15 @@ public class GFG {
 		System.out.println("Yearly Intrest is = " + Math.round(totInt)); // Yearly Interest
 		System.out.println("Total Interest Payable= " + Math.round(yearInt)); // Total Interest
 
-		double salary, capToPay;
+		double salary, capToPay, salPart;
 		int age;
 
 		System.out.println("Enter Salary");
 		salary = t.nextFloat();
-		capToPay = (((salary / 100) * 40)) * time;
+		System.out.println("Enter Percent of Salary");
+		salPart = t.nextFloat();
+
+		capToPay = (((salary / 100) * salPart)) * time;
 		System.out.println("Enter Age");
 		age = t.nextInt();
 
