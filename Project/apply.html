@@ -77,10 +77,11 @@
                         var calcemi= document.getElementById("emi");
                         var calctot= document.getElementById("total");
 
+var x=(principal.value*rate.value*slider.value)/100;
                         
                         calcint.innerHTML=(principal.value*rate.value*slider.value)/100;
-                        calcemi.innerHTML=((principal.value*rate.value*slider.value)/100)/(slider.value*12);
-                        calctot.innerHTML=Math.add(((principal.value*rate.value*slider.value)/100) + principal.value);
+                        calcemi.innerHTML=+x/(slider.value*12) + + principal.value/(slider.value*12);
+                        calctot.innerHTML=+x+ + principal.value;
                        
 // var x=Math.pow(1 + rate.value, slider.value);
 // var y=Math.pow(1 + rate.value, slider.value);
