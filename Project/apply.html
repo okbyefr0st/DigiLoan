@@ -13,8 +13,9 @@
         
         .slider {
             -webkit-appearance: none;
-            width: 100%;
-            height: 25px;
+            width: 50%;
+            height: 15px;
+            border-radius: 5px;
             background: #d3d3d3;
             outline: none;
             opacity: 0.7;
@@ -31,6 +32,7 @@
             appearance: none;
             width: 25px;
             height: 25px;
+            border-radius: 50%;
             background: #4CAF50;
             cursor: pointer;
         }
@@ -38,9 +40,11 @@
         .slider::-moz-range-thumb {
             width: 25px;
             height: 25px;
+            border-radius: 50%;
             background: #4CAF50;
             cursor: pointer;
         }
+        
         </style>
         </head>
 <body>
@@ -49,17 +53,17 @@
                   <h1>EMI Calculator</h1>
                   
                   <b>Principal</b><span><br><input type="text" name="principal" placeholder="Principal" pattern=[0-9]{6,7} id="p"/>
-                  <b>Rate of interest</b><br><input type="text" name="interest" size="32" value="8" readonly id="r"/>%
+                  <b>Rate of interest</b><br><input type="text" name="interest" size="32" value="8" readonly id="r"/>
                   
                     <div class="slidecontainer">
                             <b>Tenure in years</b><br> <input type="range" min="5" max="20" value="10" class="slider" id="t">
                              <p>Tenure(in years): <span id="val"></span></p>
                              
-                             <p>Total Interest: <span id="i"></span></p>
                              <p>EMI: <span id="emi"></span></p>
+                             <p>Total Interest: <span id="i"></span></p>
                              <p>Total Payable: <span id="total"></span></p>
                     </div>
-                  </div> 
+                  </div>
                   
                   <script>
                         var slider = document.getElementById("t");
@@ -77,19 +81,26 @@
                         var calcemi= document.getElementById("emi");
                         var calctot= document.getElementById("total");
 
-var x=(principal.value*rate.value*slider.value)/100;
+                        // var x=(principal.value*rate.value*slider.value)/100;
                         
-                        calcint.innerHTML=(principal.value*rate.value*slider.value)/100;
-                        calcemi.innerHTML=+x/(slider.value*12) + + principal.value/(slider.value*12);
-                        calctot.innerHTML=+x+ + principal.value;
+                        // calcint.innerHTML=(principal.value*rate.value*slider.value)/100;
+                        // calcemi.innerHTML=+x/(slider.value*12) + + principal.value/(slider.value*12);
+                        // calctot.innerHTML=+x+ + principal.value;
                        
-// var x=Math.pow(1 + rate.value, slider.value);
-// var y=Math.pow(1 + rate.value, slider.value);
-//calc.innerHTML=(principal.value*x)/(y-1);
+                       /* Compound Interest Begins*/
+                        var l=principal.value;
+                        var m=rate.value/(12*100);
+                        var n=slider.value*12;
+                        
 
-//calc.innerHTML=[principal.value*(Math.pow((1+rate.value),slider.value))]-principal.value;
+                        var o=(Math.pow(+1+ +m,n))/((Math.pow(+1+ +m,n))-1);
+                        calcemi.innerHTML=Math.round(l*o*m);
+                        calctot.innerHTML= Math.round(l*o*m)*(slider.value*12);
+                        var z=Math.round(l*o*m)*(slider.value*12);
+                        calcint.innerHTML=z-l;
 
-// emi = (p * r * (float) Math.pow(1 + r, t))/(double)(Math.pow(1 + r, t)-1);// P [(1 + i)n – 1]
+
+                    
 }
                         </script>
                     </body>
